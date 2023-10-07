@@ -1,0 +1,38 @@
+.navbar {
+  display: flex;
+  padding: 25px 80px;
+  width: 100%;
+  height: auto;
+  justify-content: space-between;
+  background-color: #fff7e9;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+.menu {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+}
+
+.LearnHub {
+  color: #ff731d;
+}
+
+.login_btn {
+  padding: 8px 10px;
+  color: #ef5b3d;
+  background-color: #fff7e9;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+}
+
+.regis_btn {
+  padding: 8px 10px;
+  color: #ff7423;
+  background-color: #fff7e9;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+}
