@@ -13,6 +13,7 @@ const Home = () => {
         <div className={classes.create}>
           <button className={classes.create_btn}>Create new content</button>
         </div>
+        <div className={classes.feed}></div>
       </div>
     </>
   )
