@@ -1,6 +1,13 @@
+import Post from '../components/Post'
+import usePosts from '../hooks/usePosts'
 import classes from './Home.module.css'
 
 const Home = () => {
+  const { contents, isLoading } = usePosts()
+
+  if (isLoading) return <h1>Loading...</h1>
+
+  console.log(contents)
   return (
     <>
       <div className={classes.container}>
@@ -13,7 +20,12 @@ const Home = () => {
         <div className={classes.create}>
           <button className={classes.create_btn}>Create new content</button>
         </div>
-        <div className={classes.feed}></div>
+        <div className={classes.feed}>
+          {contents &&
+            contents.data.map((content) => {
+              return <Post key={content.id} contents={content} />
+            })}
+        </div>
       </div>
     </>
   )

@@ -1,4 +1,26 @@
-export interface ContentDto {
+export interface UserDTO {
+  id: number
+  username: string
+  name: string
+  registeredAt: string
+}
+
+export interface LoginDTO {
+  username: string
+  password: string
+}
+
+export interface RegisterDTO {
+  username: string
+  password: string
+  name: string
+}
+
+export interface CredentialDTO {
+  accessToken: string
+}
+
+export interface ContentDTO {
   id: number
   videoTitle: string
   videoUrl: string
@@ -7,14 +29,28 @@ export interface ContentDto {
   thumbnailUrl: string
   creatorName: string
   creatorUrl: string
-  postedBy: UserDto
+  postedBy: UserDTO
   createdAt: string
   updatedAt: string
 }
 
-export interface UserDto {
-  id: number
-  username: string
-  name: string
-  registeredAt: string
+export interface ContentsDTO {
+  data: ContentDTO[]
+}
+
+export interface ErrorDTO {
+  statusCode: number
+  message: string
+  error: string
+}
+
+export interface CreateContentDTO {
+  videoUrl: string
+  comment: string
+  rating: number
+}
+
+export interface UpdateContentDTO {
+  comment: string
+  rating: number
 }

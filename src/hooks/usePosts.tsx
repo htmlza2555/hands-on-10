@@ -1,25 +1,30 @@
 import { useEffect, useState } from 'react'
-import { ContentDto } from '../types/dto'
+import { ContentsDTO } from '../types/dto'
 import axios from 'axios'
 
 const usePosts = () => {
-  const [posts, setPosts] = useState<ContentDto[] | null>(null)
+  const [contents, setContents] = useState<ContentsDTO | null>(null)
+  const [isLoading, setIsLoading] = useState<boolean>(false)
 
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true)
       try {
-        const res = await axios.get<ContentDto[]>('https://api.learnhub.thanayut.in.th/content')
+        const res = await axios.get<ContentsDTO>('https://api.learnhub.thanayut.in.th/content')
 
-        setPosts(res.data)
+        console.log(res.data)
+        setContents(res.data)
       } catch (err) {
         console.error(err)
+      } finally {
+        setIsLoading(false)
       }
     }
 
     fetchData()
   }, [])
 
-  return { posts }
+  return { contents, isLoading }
 }
 
 export default usePosts
