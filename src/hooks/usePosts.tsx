@@ -3,6 +3,7 @@ import { ContentsDTO, CreateContentDTO } from '../types/dto'
 import axios from 'axios'
 
 const usePosts = () => {
+  const token = localStorage.getItem('token')
   const [contents, setContents] = useState<ContentsDTO | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [isPosting, setPosting] = useState<boolean>(false)
@@ -34,11 +35,13 @@ const usePosts = () => {
 
     setPosting(true)
     try {
-      const res = await axios.post<ContentsDTO>('https://api.learnhub.thanayut.in.th/content/', newPost, {
-        headers: { 'Content-Type': 'application/json' },
+      const res = await axios.post<CreateContentDTO>('https://api.learnhub.thanayut.in.th/content', newPost, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
       })
-
-      console.log(res.data.data)
+      console.log(res.data)
     } catch (err) {
       console.error(err)
     } finally {

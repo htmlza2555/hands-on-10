@@ -65,7 +65,8 @@ const Create = () => {
             size={24}
             color2="#FF731D"
             edit={true}
-            onChange={(e) => setNewComment(e.target.value)}
+            half={true}
+            onChange={(rating) => setNewRating(rating)}
           />
         </div>
         <button className={classes.create_btn} type="submit" disabled={isPosting}>
