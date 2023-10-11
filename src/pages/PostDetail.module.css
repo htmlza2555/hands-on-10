@@ -33,7 +33,9 @@
 }
 
 .video {
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .videoUrl {
@@ -48,5 +50,13 @@
 }
 
 .postedBy {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  align-items: end;
+}
+
+.star {
+  display: flex;
   text-align: right;
 }
