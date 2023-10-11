@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { ContentDTO } from '../types/dto'
 import classes from './Post.module.css'
+import ReactStars from 'react-stars'
 
 interface IContentProps {
   content: ContentDTO
@@ -18,14 +19,14 @@ const Post = ({ content }: IContentProps) => {
         <div className={classes.detail}>
           <div className={classes.section}>
             <div className={classes.title}>
-              <a>{content.videoTitle}</a>
-              <a>{content.creatorName}</a>
+              <p>{content.videoTitle}</p>
+              <p>{content.creatorName}</p>
             </div>
-            <a>{content.comment}</a>
+            <p>{content.comment}</p>
           </div>
           <div className={classes.rating}>
-            <a>{content.postedBy.name}</a>
-            <a>{content.rating}</a>
+            <p>{content.postedBy.name}</p>
+            <ReactStars size={24} color2="#FF731D" value={content.rating} edit={false} />
           </div>
         </div>
       </Link>

@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import PostDetail from './pages/PostDetail'
 import Create from './pages/Create'
+import Login from './pages/Login'
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/content/:id" element={<PostDetail />} />
         <Route path="/create" element={<Create />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
   )

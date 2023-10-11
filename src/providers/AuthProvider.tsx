@@ -42,6 +42,7 @@ const AuthProvider = ({ children }: IAuthProviderProps) => {
 
       localStorage.setItem('token', res.data.accessToken)
       localStorage.setItem('username', username)
+      console.log(token)
       setIsLoggedin(true)
       setUsername(username)
     } catch (err) {

@@ -15,8 +15,14 @@
   align-items: center;
 }
 
-.LearnHub {
+.inactive {
+  text-decoration: none;
+}
+
+.active {
   color: #ff731d;
+  font-weight: bold;
+  text-decoration: none;
 }
 
 .login_btn {
