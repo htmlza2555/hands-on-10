@@ -23,7 +23,7 @@ const Home = () => {
         <div className={classes.feed}>
           {contents &&
             contents.data.map((content) => {
-              return <Post key={content.id} contents={content} />
+              return <Post key={content.id} content={content} />
             })}
         </div>
       </div>

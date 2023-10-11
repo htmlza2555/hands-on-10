@@ -3,25 +3,25 @@ import { ContentDTO } from '../types/dto'
 import classes from './Post.module.css'
 
 interface IContentProps {
-  contents: ContentDTO
+  content: ContentDTO
 }
 
-const Post = ({ contents }: IContentProps) => {
+const Post = ({ content }: IContentProps) => {
   return (
     <div className={classes.post}>
-      <Link className={classes.container} to={`/content/${contents.id}`}>
-        <img className={classes.thumbnailUrl} src={contents.thumbnailUrl} />
+      <Link className={classes.container} to={`/content/${content.id}`}>
+        <img className={classes.thumbnailUrl} src={content.thumbnailUrl} />
         <div className={classes.detail}>
           <div className={classes.section}>
             <div className={classes.title}>
-              <a>{contents.videoTitle}</a>
-              <a>{contents.creatorName}</a>
+              <a>{content.videoTitle}</a>
+              <a>{content.creatorName}</a>
             </div>
-            <a>{contents.comment}</a>
+            <a>{content.comment}</a>
           </div>
           <div className={classes.rating}>
-            <a>{contents.postedBy.name}</a>
-            <a>{contents.rating}</a>
+            <a>{content.postedBy.name}</a>
+            <a>{content.rating}</a>
           </div>
         </div>
       </Link>
