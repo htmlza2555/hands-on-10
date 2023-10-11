@@ -9,17 +9,13 @@ const Create = () => {
   const navigate = useNavigate()
   const [newUrl, setNewUrl] = useState<string>('')
   const [newComment, setNewComment] = useState<string>('')
-  const [newRating, setNewRating] = useState<number>(Number)
+  const [newRating, setNewRating] = useState<number>(0)
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
 
     try {
       await createPost(newUrl, newComment, newRating)
-
-      setNewUrl('')
-      setNewComment('')
-      setNewRating(Number)
 
       navigate('/')
     } catch (err) {
@@ -64,7 +60,13 @@ const Create = () => {
           />
         </div>
         <div>
-          <ReactStars count={5} size={24} color2="#FF731D" edit={true} />
+          <ReactStars
+            count={5}
+            size={24}
+            color2="#FF731D"
+            edit={true}
+            onChange={(e) => setNewComment(e.target.value)}
+          />
         </div>
         <button className={classes.create_btn} type="submit" disabled={isPosting}>
           Create
