@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom'
 import classes from './PostDetail.module.css'
 import usePost from '../hooks/usePost'
+import ReactPlayer from 'react-player'
 
 const PostDetail = () => {
   const { id } = useParams()
@@ -21,7 +22,7 @@ const PostDetail = () => {
               </a>
             </div>
             <div className={classes.video}>
-              <video className={classes.videoUrl} src={Post.videoUrl}></video>
+              <ReactPlayer className={classes.videoUrl} url={Post.videoUrl}></ReactPlayer>
             </div>
             <div className={classes.commentGroup}>
               <p>{Post.comment}</p>

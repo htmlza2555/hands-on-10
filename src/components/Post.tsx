@@ -9,7 +9,11 @@ interface IContentProps {
 const Post = ({ content }: IContentProps) => {
   return (
     <div className={classes.post}>
-      <Link className={classes.container} to={`/content/${content.id}`}>
+      <Link
+        className={classes.container}
+        to={`/content/${content.id}`}
+        style={{ textDecoration: 'none', color: 'black' }}
+      >
         <img className={classes.thumbnailUrl} src={content.thumbnailUrl} />
         <div className={classes.detail}>
           <div className={classes.section}>
