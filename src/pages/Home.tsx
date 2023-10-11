@@ -1,13 +1,16 @@
+import { NavLink } from 'react-router-dom'
 import Post from '../components/Post'
 import usePosts from '../hooks/usePosts'
+import { useAuth } from '../providers/AuthProvider'
 import classes from './Home.module.css'
 
 const Home = () => {
   const { contents, isLoading } = usePosts()
+  const { isLoggedIn } = useAuth()
 
   if (isLoading) return <h1>Loading...</h1>
 
-  console.log(contents)
+  console.log(isLoggedIn)
   return (
     <>
       <div className={classes.container}>
@@ -18,7 +21,13 @@ const Home = () => {
       </div>
       <div className={classes.feed_container}>
         <div className={classes.create}>
-          <button className={classes.create_btn}>Create new content</button>
+          {isLoggedIn ? (
+            <NavLink to="/create" className={classes.create_btn}>
+              Create new content
+            </NavLink>
+          ) : (
+            <></>
+          )}
         </div>
         <div className={classes.feed}>
           {contents &&
