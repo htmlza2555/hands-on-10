@@ -18,6 +18,7 @@ const Create = () => {
       await createPost(newUrl, newComment, newRating)
 
       navigate('/')
+      console.log(handleSubmit)
     } catch (err) {
       console.error(err)
     }
@@ -65,7 +66,7 @@ const Create = () => {
             size={24}
             color2="#FF731D"
             edit={true}
-            half={true}
+            half={false}
             onChange={(rating) => setNewRating(rating)}
           />
         </div>

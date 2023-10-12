@@ -60,3 +60,7 @@
   display: flex;
   text-align: right;
 }
+
+.edit_btn {
+  color: #656b6e;
+}
