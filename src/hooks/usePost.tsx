@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
-import { ContentDTO } from '../types/dto'
+import { ContentDTO, UpdateContentDTO } from '../types/dto'
 import axios from 'axios'
 
 const usePost = (id: string) => {
+  const token = localStorage.getItem('token')
   const [Post, setPost] = useState<ContentDTO | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,7 +24,22 @@ const usePost = (id: string) => {
     fetchData()
   }, [id])
 
-  return { Post, isLoading }
+  const editPost = async (editComment: string, editRating: number) => {
+    const editContent: UpdateContentDTO = {
+      comment: editComment,
+      rating: editRating,
+    }
+
+    setIsSubmitting(true)
+    try {
+    } catch (err) {
+      console.error(err)
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+  return { Post, isLoading, editPost }
 }
 
 export default usePost
