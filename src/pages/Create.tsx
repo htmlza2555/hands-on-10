@@ -65,7 +65,7 @@ const Create = () => {
             size={24}
             color2="#FF731D"
             edit={true}
-            half={true}
+            half={false}
             onChange={(rating) => setNewRating(rating)}
           />
         </div>

@@ -3,6 +3,7 @@ import classes from './PostDetail.module.css'
 import usePost from '../hooks/usePost'
 import ReactPlayer from 'react-player'
 import ReactStars from 'react-stars'
+import { Link } from 'react-router-dom'
 
 const PostDetail = () => {
   const { id } = useParams()
@@ -32,6 +33,9 @@ const PostDetail = () => {
                 <p>{Post.postedBy.name}</p>
                 <p>{Post.createdAt}</p>
                 <p>{Post.updatedAt}</p>
+                <Link to="/content/:id/edit">
+                  <button className={classes.edit_btn}>Edit</button>
+                </Link>
               </div>
             </div>
           </>
