@@ -18,6 +18,7 @@ const Create = () => {
       await createPost(newUrl, newComment, newRating)
 
       navigate('/')
+      console.log(handleSubmit)
     } catch (err) {
       console.error(err)
     }

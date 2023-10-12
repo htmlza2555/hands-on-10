@@ -3,7 +3,7 @@ import classes from './PostDetail.module.css'
 import usePost from '../hooks/usePost'
 import ReactPlayer from 'react-player'
 import ReactStars from 'react-stars'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 const PostDetail = () => {
   const { id } = useParams()
@@ -32,11 +32,11 @@ const PostDetail = () => {
                 <ReactStars className={classes.star} value={Post.rating} size={24} color2="#FF731D" edit={false} />
                 <p>{Post.postedBy.name}</p>
                 <p>{Post.createdAt}</p>
-                <p>{Post.updatedAt}</p>
+                <p>{`(Updated on ${Post.updatedAt})`}</p>
                 {localStorage.getItem('username') === Post.postedBy.username ? (
-                  <Link to="/content/:id/edit">
+                  <NavLink to={`/content/${id}/edit`}>
                     <button className={classes.edit_btn}>Edit</button>
-                  </Link>
+                  </NavLink>
                 ) : (
                   <></>
                 )}
