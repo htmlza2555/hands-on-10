@@ -61,6 +61,18 @@
   text-align: right;
 }
 
+.btnGroup {
+  display: flex;
+  gap: 5px;
+}
+
 .edit_btn {
   color: #656b6e;
+  border-radius: 10px;
+}
+
+.delete_btn {
+  color: #000000;
+  background-color: rgb(255, 25, 25);
+  border-radius: 10px;
 }
