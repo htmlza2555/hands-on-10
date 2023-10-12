@@ -51,7 +51,24 @@ const usePost = (id: string) => {
     }
   }
 
-  return { Post, isLoading, isSubmitting, editPost }
+  const deletePost = async () => {
+    const token = localStorage.getItem('token')
+
+    try {
+      const res = await axios.delete(`https://api.learnhub.thanayut.in.th/content/${id}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      console.log(res.data)
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  return { Post, isLoading, isSubmitting, editPost, deletePost }
 }
 
 export default usePost
