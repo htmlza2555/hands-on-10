@@ -34,9 +34,14 @@ const PostDetail = () => {
                 <p>{Post.createdAt}</p>
                 <p>{`(Updated on ${Post.updatedAt})`}</p>
                 {localStorage.getItem('username') === Post.postedBy.username ? (
-                  <NavLink to={`/content/${id}/edit`}>
-                    <button className={classes.edit_btn}>Edit</button>
-                  </NavLink>
+                  <div className={classes.btnGroup}>
+                    <NavLink to={`/content/${id}/edit`}>
+                      <button className={classes.edit_btn}>Edit</button>
+                    </NavLink>
+                    <NavLink to={`/`}>
+                      <button className={classes.delete_btn}>Delete</button>
+                    </NavLink>
+                  </div>
                 ) : (
                   <></>
                 )}
