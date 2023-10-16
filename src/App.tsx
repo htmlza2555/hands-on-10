@@ -8,6 +8,7 @@ import Login from './pages/Login'
 import GuardedRoute from './guard/GuardedRoute'
 import { useAuth } from './providers/AuthProvider'
 import Edit from './pages/Edit'
+import Register from './pages/Register'
 
 function App() {
   const { isLoggedIn } = useAuth()
@@ -23,6 +24,7 @@ function App() {
         </Route>
         <Route element={<GuardedRoute isRouteAccessible={!isLoggedIn} redirectRoute="/" />}>
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Route>
       </Routes>
     </div>

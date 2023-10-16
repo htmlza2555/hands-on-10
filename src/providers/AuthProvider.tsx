@@ -1,5 +1,5 @@
 import { ReactNode, createContext, useContext, useState } from 'react'
-import { CredentialDTO, LoginDTO } from '../types/dto'
+import { CredentialDTO, LoginDTO, RegisterDTO } from '../types/dto'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
@@ -12,6 +12,7 @@ interface IAuthContextType {
   username: string | null
   login: (username: string, password: string) => Promise<void>
   logout: () => void
+  registerUser: (newUsername: string, newPassword: string, newName: string) => Promise<void>
 }
 
 const AuthContext = createContext<IAuthContextType | null>(null)
@@ -58,7 +59,31 @@ const AuthProvider = ({ children }: IAuthProviderProps) => {
     navigate('/')
   }
 
-  return <AuthContext.Provider value={{ isLoggedIn, username, login, logout }}>{children}</AuthContext.Provider>
+  const registerUser = async (newUsername: string, newPassword: string, newName: string) => {
+    const newUser: RegisterDTO = {
+      username: newUsername,
+      password: newPassword,
+      name: newName,
+    }
+
+    try {
+      const res = await axios.post<RegisterDTO>('https://api.learnhub.thanayut.in.th/user', newUser, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+
+      console.log(res.data.name)
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  return (
+    <AuthContext.Provider value={{ isLoggedIn, username, login, logout, registerUser }}>
+      {children}
+    </AuthContext.Provider>
+  )
 }
 
 export default AuthProvider
