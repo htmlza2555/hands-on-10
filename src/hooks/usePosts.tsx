@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { ContentsDTO, CreateContentDTO, RegisterDTO } from '../types/dto'
+import { ContentsDTO, CreateContentDTO } from '../types/dto'
 import axios from 'axios'
 
 const usePosts = () => {
@@ -49,30 +49,7 @@ const usePosts = () => {
     }
   }
 
-  const registerUser = async (newUsername: string, newPassword: string, newName: string) => {
-    const newUser: RegisterDTO = {
-      username: newUsername,
-      password: newPassword,
-      name: newName,
-    }
-
-    setPosting(true)
-    try {
-      const res = await axios.post<RegisterDTO>('https://api.learnhub.thanayut.in.th/user', newUser, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      })
-
-      console.log(res.data.name)
-    } catch (err) {
-      console.error(err)
-    } finally {
-      setPosting(false)
-    }
-  }
-
-  return { contents, isLoading, isPosting, createPost, registerUser }
+  return { contents, isLoading, isPosting, createPost }
 }
 
 export default usePosts

@@ -2,9 +2,11 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import classes from './Register.module.css'
 import usePosts from '../hooks/usePosts'
 import { FormEvent, useState } from 'react'
+import { useAuth } from '../providers/AuthProvider'
 
 const Register = () => {
-  const { isPosting, registerUser } = usePosts()
+  const { isPosting } = usePosts()
+  const { registerUser } = useAuth()
   const navigate = useNavigate()
   const [newUsername, setNewUsername] = useState<string>('')
   const [newPassword, setNewPassword] = useState<string>('')
@@ -78,7 +80,7 @@ const Register = () => {
             required
           />
         </div>
-        <div className={classes.inputGroup}>
+        {/* <div className={classes.inputGroup}>
           <div>Confirm Password</div>
           <input
             style={{
@@ -95,7 +97,7 @@ const Register = () => {
             }}
             required
           />
-        </div>
+        </div> */}
         <button className={classes.register_btn} type="submit" disabled={isPosting}>
           Register
         </button>
