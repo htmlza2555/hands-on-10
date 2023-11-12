@@ -11,7 +11,7 @@ const usePost = (id: string) => {
     const fetchData = async () => {
       setIsLoading(true)
       try {
-        const res = await axios.get<ContentDTO>(`https://api.learnhub.thanayut.in.th/content/${id}`)
+        const res = await axios.get<ContentDTO>(`http://localhost:8080/content/${id}`)
 
         setPost(res.data)
       } catch (err) {
@@ -32,16 +32,12 @@ const usePost = (id: string) => {
 
     setIsSubmitting(true)
     try {
-      const res = await axios.patch<UpdateContentDTO>(
-        `https://api.learnhub.thanayut.in.th/content/${id}`,
-        editContent,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
+      const res = await axios.patch<UpdateContentDTO>(`http://localhost:8080/content/${id}`, editContent, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
         },
-      )
+      })
 
       console.log(res.data)
     } catch (err) {
@@ -55,7 +51,7 @@ const usePost = (id: string) => {
     const token = localStorage.getItem('token')
 
     try {
-      const res = await axios.delete(`https://api.learnhub.thanayut.in.th/content/${id}`, {
+      const res = await axios.delete(`http://localhost:8080/content/${id}`, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,

@@ -1,6 +1,6 @@
-import { ReactNode, createContext, useContext, useState } from 'react'
+import { ReactNode, createContext, useContext, useEffect, useState } from 'react'
 import { CredentialDTO, LoginDTO, RegisterDTO } from '../types/dto'
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
 import { useNavigate } from 'react-router-dom'
 
 interface IAuthProviderProps {
@@ -28,16 +28,40 @@ export const useAuth = () => {
 const token = localStorage.getItem('token')
 const user = localStorage.getItem('username')
 
+const checkLoginStatus = async (token: string | null): Promise<boolean> => {
+  if (typeof token !== 'string') return false
+  try {
+    const currentUser = await axios.get('http://localhost:8080/auth/me', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+
+    if (currentUser.status === 200) return true
+  } catch (err) {
+    if (err instanceof AxiosError && err.response?.status === 403) return false
+
+    throw err
+  }
+  return false
+}
+
 const AuthProvider = ({ children }: IAuthProviderProps) => {
   const navigate = useNavigate()
-  const [isLoggedIn, setIsLoggedin] = useState<boolean>(!!token)
+  const [isLoggedIn, setIsLoggedin] = useState<boolean>(false)
   const [username, setUsername] = useState<string | null>(user)
+
+  useEffect(() => {
+    checkLoginStatus(token).then((isLoggedInAlready) => {
+      setIsLoggedin(isLoggedInAlready)
+    })
+  }, [])
 
   const login = async (username: string, password: string) => {
     const loginBody: LoginDTO = { username, password }
 
     try {
-      const res = await axios.post<CredentialDTO>('https://api.learnhub.thanayut.in.th/auth/login', loginBody, {
+      const res = await axios.post<CredentialDTO>('http://localhost:8080/auth/login', loginBody, {
         headers: { 'Content-Type': 'application/json' },
       })
 
@@ -67,7 +91,7 @@ const AuthProvider = ({ children }: IAuthProviderProps) => {
     }
 
     try {
-      const res = await axios.post<RegisterDTO>('https://api.learnhub.thanayut.in.th/user', newUser, {
+      const res = await axios.post<RegisterDTO>('http://localhost:8080/user', newUser, {
         headers: {
           'Content-Type': 'application/json',
         },

@@ -31,7 +31,7 @@ const Home = () => {
         </div>
         <div className={classes.feed}>
           {contents &&
-            contents.data.map((content) => {
+            contents.map((content) => {
               return <Post key={content.id} content={content} />
             })}
         </div>

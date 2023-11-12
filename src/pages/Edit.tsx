@@ -54,7 +54,7 @@ const Edit = () => {
             color2="#FF731D"
             edit={true}
             half={false}
-            value={Post?.rating}
+            value={Post?.rating || 1 || 2 || 3 || 4 || 5}
             onChange={(editRating) => setEditRating(editRating)}
           />
         </div>

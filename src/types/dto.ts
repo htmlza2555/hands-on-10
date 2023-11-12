@@ -34,9 +34,7 @@ export interface ContentDTO {
   updatedAt: string
 }
 
-export interface ContentsDTO {
-  data: ContentDTO[]
-}
+export type ContentsDTO = ContentDTO[]
 
 export interface ErrorDTO {
   statusCode: number
