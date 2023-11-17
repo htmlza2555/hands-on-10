@@ -67,7 +67,6 @@ const AuthProvider = ({ children }: IAuthProviderProps) => {
 
       localStorage.setItem('token', res.data.accessToken)
       localStorage.setItem('username', username)
-      console.log(token)
       setIsLoggedin(true)
       setUsername(username)
     } catch (err) {
@@ -75,12 +74,24 @@ const AuthProvider = ({ children }: IAuthProviderProps) => {
     }
   }
 
-  const logout = () => {
-    localStorage.clear()
+  const logout = async () => {
     setIsLoggedin(false)
-    setUsername(null)
+    const url = 'http://localhost:8080/auth/logout'
+    try {
+      const token = localStorage.getItem('token')
 
-    navigate('/')
+      await axios.get(url, {
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+      })
+      localStorage.clear()
+
+      setUsername(null)
+
+      navigate('/')
+    } catch (error) {
+      console.error(error)
+      throw new Error('Invalid token')
+    }
   }
 
   const registerUser = async (newUsername: string, newPassword: string, newName: string) => {
